@@ -15,24 +15,17 @@
 This module defines plug-in public interfaces.
 """
 
-from beaker.cache import cache_regions
 from zope.interface import Attribute, Interface, Invalid, invariant
 from zope.schema import Bool, Choice, TextLine
-from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
 from pyams_security.interfaces import ICredentialsPlugin
+from pyams_utils.cache import BEAKER_CACHES_VOCABULARY
 
 from pyams_auth_azure import _
 
 
 AZURE_CONFIGURATION_KEY = 'pyams_auth_azure.configuration'
 """Main Azure configuration key"""
-
-
-BEAKER_CACHES_VOCABULARY = SimpleVocabulary([
-    SimpleTerm(key, title='{} ({} sec.)'.format(key, str(val.get('expire'))))
-    for key, val in sorted(cache_regions.items(), key=lambda x: x[1].get('expire'))
-])
 
 
 class IAzureSecurityConfiguration(Interface):

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE 1.0\n"
-"POT-Creation-Date: 2020-12-30 00:29+0100\n"
+"POT-Creation-Date: 2021-01-01 16:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,71 +16,71 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Lingua 3.10.dev0\n"
 
-#: src/pyams_auth_azure/plugin.py:87
-msgid "Azure authentication credentials"
+#: src/pyams_auth_azure/plugin.py:73
+msgid "Azure authentication"
 msgstr "Authentification Azure"
 
-#: src/pyams_auth_azure/interfaces.py:39
+#: src/pyams_auth_azure/interfaces.py:34
 msgid "Enable Azure authentication?"
 msgstr "Activer l'authentification Azure ?"
 
-#: src/pyams_auth_azure/interfaces.py:40
+#: src/pyams_auth_azure/interfaces.py:35
 msgid "Enable login via Azure authentication"
 msgstr "Activer la connexion via une authentification par le portail Azure"
 
-#: src/pyams_auth_azure/interfaces.py:44
+#: src/pyams_auth_azure/interfaces.py:39
 msgid "Client ID"
 msgstr "ID client"
 
-#: src/pyams_auth_azure/interfaces.py:45
+#: src/pyams_auth_azure/interfaces.py:40
 msgid "Application client ID"
 msgstr "ID client de l'application"
 
-#: src/pyams_auth_azure/interfaces.py:48
+#: src/pyams_auth_azure/interfaces.py:43
 msgid "Secret key"
 msgstr "Clé secrète"
 
-#: src/pyams_auth_azure/interfaces.py:49
+#: src/pyams_auth_azure/interfaces.py:44
 msgid "Application secret key"
 msgstr "Clé secrète de l'application"
 
-#: src/pyams_auth_azure/interfaces.py:52
+#: src/pyams_auth_azure/interfaces.py:47
 msgid "Authentication authority"
 msgstr "Autorité d'authentification'"
 
-#: src/pyams_auth_azure/interfaces.py:53
+#: src/pyams_auth_azure/interfaces.py:48
 msgid "URL of the authentication authority"
 msgstr "URL de l'autorité d'authentification utilisée pour valider les jetons"
 
-#: src/pyams_auth_azure/interfaces.py:63
+#: src/pyams_auth_azure/interfaces.py:58
 msgid "Verify SSL?"
 msgstr "Vérification SSL"
 
-#: src/pyams_auth_azure/interfaces.py:64
+#: src/pyams_auth_azure/interfaces.py:59
 msgid "If 'no', SSL certificates will not be verified"
 msgstr "Si 'non', les certificats SSL ne seront pas vérifiés"
 
-#: src/pyams_auth_azure/interfaces.py:68
+#: src/pyams_auth_azure/interfaces.py:63
 msgid "Authorization header"
 msgstr "En-tête d'autorisation"
 
-#: src/pyams_auth_azure/interfaces.py:69
+#: src/pyams_auth_azure/interfaces.py:64
 msgid "Name of the HTTP header containing authentication token"
 msgstr "Nom de l'en-tête HTTP contenant le jeton d'authentification"
 
-#: src/pyams_auth_azure/interfaces.py:74
+#: src/pyams_auth_azure/interfaces.py:69
 msgid "Authorization scheme"
 msgstr "Schéma d'authentification"
 
-#: src/pyams_auth_azure/interfaces.py:75
+#: src/pyams_auth_azure/interfaces.py:70
 msgid "Name of the prefix used in HTTP header"
 msgstr "Préfixe utilisé dans l'en-tête HTTP d'authentification"
 
-#: src/pyams_auth_azure/interfaces.py:79
+#: src/pyams_auth_azure/interfaces.py:74
 msgid "Test header"
 msgstr "En-tête de test"
 
-#: src/pyams_auth_azure/interfaces.py:80
+#: src/pyams_auth_azure/interfaces.py:75
 msgid ""
 "If this header is set and present into request headers (with any value), the "
 "authorization header value will be used \"as is\" without any Azure "
@@ -91,11 +91,11 @@ msgstr ""
 "traité \"en l'état\" sans appel à Azure pour extraire le login de "
 "l'utilisateur..."
 
-#: src/pyams_auth_azure/interfaces.py:86
+#: src/pyams_auth_azure/interfaces.py:81
 msgid "Use authorization cache?"
-msgstr "Utiliser un cache ?"
+msgstr "Mettre les jetons en cache ?"
 
-#: src/pyams_auth_azure/interfaces.py:87
+#: src/pyams_auth_azure/interfaces.py:82
 msgid ""
 "If selected, this option allows to store credentials in a local cache from "
 "which they can be reused"
@@ -105,15 +105,15 @@ msgstr ""
 "récupérés pour différentes requêtes, sans nécessité de faire appel au "
 "portail Azure"
 
-#: src/pyams_auth_azure/interfaces.py:92
+#: src/pyams_auth_azure/interfaces.py:87
 msgid "Selected tokens cache"
 msgstr "Cache de jetons"
 
-#: src/pyams_auth_azure/interfaces.py:93
+#: src/pyams_auth_azure/interfaces.py:88
 msgid "Beaker cache selected to store validated tokens"
 msgstr "Cache pré-défini dans lequel seront stockés les jetons"
 
-#: src/pyams_auth_azure/interfaces.py:60
+#: src/pyams_auth_azure/interfaces.py:55
 msgid ""
 "Client ID, secret key and authentication authority are required to enable "
 "Azure authentication"
@@ -121,15 +121,15 @@ msgstr ""
 "L'ID client, la clé secrète et l'autorité d'authentification sont "
 "obligatoires pour activer l'authentification Azure"
 
-#: src/pyams_auth_azure/zmi/plugin.py:51 src/pyams_auth_azure/zmi/plugin.py:61
+#: src/pyams_auth_azure/zmi/plugin.py:52 src/pyams_auth_azure/zmi/plugin.py:62
 msgid "Azure configuration"
 msgstr "Configuration Azure"
 
-#: src/pyams_auth_azure/zmi/plugin.py:60
+#: src/pyams_auth_azure/zmi/plugin.py:61
 msgid "Security manager"
 msgstr "Gestionnaire de sécurité"
 
-#: src/pyams_auth_azure/zmi/plugin.py:88
+#: src/pyams_auth_azure/zmi/plugin.py:89
 msgid ""
 "Azure authentication plug-in support the \"on-behalf-of\" flow, where a "
 "resource declared on the Azure portal can be accessed, using an MSAL client "
@@ -152,6 +152,9 @@ msgstr ""
 "(ou un annuaire LDAP).\n"
 "La mise en place d'un cache (d'uné durée limitée !) permet de réduire les "
 "appels au portail Azure."
+
+#~ msgid "Azure authentication credentials"
+#~ msgstr "Authentification Azure"
 
 #~ msgid "Login attribute"
 #~ msgstr "Attribut de connexion"

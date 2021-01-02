@@ -16,10 +16,8 @@ This module provides main Azure authentication plug-in.
 """
 
 import logging
-from threading import local
 
 from ZODB.POSException import ConnectionStateError
-from beaker.cache import CacheManager, cache_regions
 from msal import ConfidentialClientApplication
 from persistent import Persistent
 from zope.container.contained import Contained
@@ -30,6 +28,7 @@ from pyams_auth_azure.interfaces import AZURE_CONFIGURATION_KEY, IAzureAuthentic
 from pyams_security.credential import Credentials
 from pyams_security.interfaces import ICredentialsPlugin, ISecurityManager
 from pyams_utils.adapter import adapter_config, get_annotation_adapter
+from pyams_utils.cache import get_cache
 from pyams_utils.factory import factory_config
 from pyams_utils.list import boolean_iter
 from pyams_utils.property import ClassPropertyType, classproperty
@@ -65,26 +64,13 @@ def security_manager_azure_configuration_factory(context):
     return get_annotation_adapter(context, AZURE_CONFIGURATION_KEY, IAzureSecurityConfiguration)
 
 
-_LOCAL = local()
-
-
-def get_tokens_cache(region):
-    """Get cache storing validated tokens"""
-    try:
-        tasks_cache = _LOCAL.azure_tokens_cache
-    except AttributeError:
-        manager = CacheManager(**cache_regions[region])
-        tasks_cache = _LOCAL.azure_tokens_cache = manager.get_cache('PyAMS::azure::tokens')
-    return tasks_cache
-
-
 @utility_config(provides=IAzureAuthenticationPlugin)
 @utility_config(name='azure', provides=ICredentialsPlugin)
 class AzureAuthenticationPlugin(metaclass=ClassPropertyType):
     """Azure authentication plug-in"""
 
     prefix = 'azure'
-    title = _("Azure authentication credentials")
+    title = _("Azure authentication")
 
     @classproperty
     def configuration(cls):  # pylint: disable=no-self-argument,no-self-use
@@ -129,10 +115,11 @@ class AzureAuthenticationPlugin(metaclass=ClassPropertyType):
             return None
         LOGGER.debug("Got Azure token: %s", token)
 
-        # Use Beaker cache
+        # Check Beaker cache
         cache = None
         if configuration.use_cache:
-            cache = get_tokens_cache(configuration.selected_cache)
+            cache = get_cache('azure_tokens', configuration.selected_cache,
+                              'PyAMS-auth-azure::tokens')
             try:
                 principal = cache.get_value(token)
             except KeyError:
