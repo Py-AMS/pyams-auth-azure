@@ -26,11 +26,9 @@ from pyams_layer.interfaces import IPyAMSLayer
 from pyams_security.interfaces import ISecurityManager
 from pyams_security.interfaces.base import MANAGE_SECURITY_PERMISSION
 from pyams_security_views.zmi import ISecurityMenu
-from pyams_site.interfaces import ISiteRoot
 from pyams_skin.interfaces.viewlet import IHeaderViewletManager
 from pyams_skin.viewlet.help import AlertMessage
 from pyams_utils.adapter import adapter_config
-from pyams_utils.registry import get_utility
 from pyams_viewlet.viewlet import viewlet_config
 from pyams_zmi.form import AdminEditForm, FormGroupChecker
 from pyams_zmi.interfaces import IAdminLayer
@@ -43,7 +41,7 @@ from pyams_auth_azure import _  # pylint: disable=ungrouped-imports
 
 
 @viewlet_config(name='azure-security-configuration.menu',
-                context=ISiteRoot, layer=IAdminLayer,
+                context=ISecurityManager, layer=IAdminLayer,
                 manager=ISecurityMenu, weight=70,
                 permission=MANAGE_SECURITY_PERMISSION)
 class AzureSecurityConfigurationMenu(NavigationMenuItem):
@@ -53,7 +51,8 @@ class AzureSecurityConfigurationMenu(NavigationMenuItem):
     href = '#azure-security-configuration.html'
 
 
-@ajax_form_config(name='azure-security-configuration.html', context=ISiteRoot, layer=IPyAMSLayer,
+@ajax_form_config(name='azure-security-configuration.html',
+                  context=ISecurityManager, layer=IPyAMSLayer,
                   permission=MANAGE_SECURITY_PERMISSION)
 class AzureSecurityConfigurationEditForm(AdminEditForm):
     """Azure security configuration edit form"""
@@ -64,12 +63,11 @@ class AzureSecurityConfigurationEditForm(AdminEditForm):
     fields = Fields(Interface)
 
     def get_content(self):
-        sm = get_utility(ISecurityManager)  # pylint: disable=invalid-name
-        return IAzureSecurityConfiguration(sm)
+        return IAzureSecurityConfiguration(self.context)
 
 
 @adapter_config(name='azure-configuration',
-                required=(ISiteRoot, IAdminLayer, AzureSecurityConfigurationEditForm),
+                required=(ISecurityManager, IAdminLayer, AzureSecurityConfigurationEditForm),
                 provides=IGroup)
 class AzureConfigurationGroup(FormGroupChecker):
     """Azure configuration edit group"""
@@ -79,7 +77,7 @@ class AzureConfigurationGroup(FormGroupChecker):
 
 
 @viewlet_config(name='jwt-configuration.header',
-                context=ISiteRoot, layer=IAdminLayer, view=AzureConfigurationGroup,
+                context=ISecurityManager, layer=IAdminLayer, view=AzureConfigurationGroup,
                 manager=IHeaderViewletManager, weight=1)
 class AzureConfigurationHeader(AlertMessage):
     """Azure configuration header"""
@@ -97,7 +95,7 @@ class AzureConfigurationHeader(AlertMessage):
 
 
 @adapter_config(name='azure-cache-configuration',
-                required=(ISiteRoot, IAdminLayer, AzureConfigurationGroup),
+                required=(ISecurityManager, IAdminLayer, AzureConfigurationGroup),
                 provides=IGroup)
 class AzureCacheConfigurationGroup(FormGroupChecker):
     """Azure cache configuration edit group"""
