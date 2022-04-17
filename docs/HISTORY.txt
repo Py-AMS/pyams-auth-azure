@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.1.3
+-----
+ - PyAMS_security interfaces refactoring
+ - added support for Python 3.10
+
 1.1.2
 -----
  - updated ZMI menus context
