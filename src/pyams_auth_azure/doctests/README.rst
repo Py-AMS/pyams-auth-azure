@@ -54,7 +54,7 @@ This package is composed of a set of utility functions, usable into any Pyramid 
     >>> from pyams_security.interfaces import ISecurityManager
     >>> sm = get_utility(ISecurityManager)
 
-    >>> from pyams_security.interfaces import ICredentialsPlugin
+    >>> from pyams_security.interfaces.plugin import ICredentialsPlugin
     >>> plugin = get_utility(ICredentialsPlugin, name='azure')
 
 

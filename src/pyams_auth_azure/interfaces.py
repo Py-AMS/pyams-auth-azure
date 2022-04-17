@@ -18,7 +18,7 @@ This module defines plug-in public interfaces.
 from zope.interface import Attribute, Interface, Invalid, invariant
 from zope.schema import Bool, Choice, TextLine
 
-from pyams_security.interfaces import ICredentialsPlugin
+from pyams_security.interfaces.plugin import ICredentialsPlugin
 from pyams_utils.cache import BEAKER_CACHES_VOCABULARY
 
 from pyams_auth_azure import _
