@@ -111,7 +111,10 @@ class AzureAuthenticationPlugin(metaclass=ClassPropertyType):
         authorization = request.headers.get(configuration.authorization_header)
         if not authorization:
             return None
-        schema, token = authorization.split(' ', 1)
+        try:
+            schema, token = authorization.split(' ', 1)
+        except ValueError:
+            return None
         if schema != configuration.authorization_scheme:
             return None
         LOGGER.debug("Got Azure token: %s", token)
