@@ -46,7 +46,7 @@ msgstr "Clé secrète de l'application"
 
 #: src/pyams_auth_azure/interfaces.py:47
 msgid "Authentication authority"
-msgstr "Autorité d'authentification'"
+msgstr "Autorité d'authentification"
 
 #: src/pyams_auth_azure/interfaces.py:48
 msgid "URL of the authentication authority"
