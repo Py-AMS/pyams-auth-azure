@@ -57,8 +57,7 @@ class AzureSecurityConfigurationMenu(NavigationMenuItem):
 class AzureSecurityConfigurationEditForm(AdminEditForm):
     """Azure security configuration edit form"""
 
-    title = _("Security manager")
-    legend = _("Azure configuration")
+    title = _("Azure configuration")
 
     fields = Fields(Interface)
 
